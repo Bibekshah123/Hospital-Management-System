@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Doctors</h2>
+<a href="{% url 'doctor-add' %}" class="btn btn-success mb-2">Add Doctor</a>
+<ul class="list-group">
+    {% for doctor in object_list %}
+        <li class="list-group-item">(Name) {{ doctor.name }} ------ (Specialization) {{ doctor.specialization }}</li>
+        <div>
+            <a href="{% url 'doctor-delete' doctor.pk %}" class="btn btn-sm btn-outline-primary">Delete</a>
+            <a href="{% url 'doctor-update' doctor.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+        </div>
+    {% endfor %}
+</ul>
+<a href="{% url 'home' %}" class="btn btn-sm btn-outline-primary">Back</a>
+
+{% endblock %}

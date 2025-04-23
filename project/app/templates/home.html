@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if user.is_authenticated %}
+Hi {{ user.username }}!
+<form action="{% url 'logout' %}" method="post">
+    {% csrf_token %}
+    <button type="submit">Log Out</button>
+  </form>
+{% else %}
+<p>You are not logged in</p>
+<a href="{% url 'login' %}">Log In</a>
+{% endif %}
+<div>
+    <a href="{% url 'doctor-list' %}" class="btn btn-success mb-2">Doctors</a>
+    {% comment %} <a href="{% url 'doctor-detail' %}" class="btn btn-success mb-2"> Doctor Details </a> {% endcomment %}
+    <a href="{% url 'appointment-list'%}" class="btn btn-success mb-2">Appointments</a>
+    <a href="{% url 'patient-list' %}" class="btn btn-success mb-2">Patients</a>
+</div>
+
+{% endblock %}

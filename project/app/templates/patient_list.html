@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Patient</h2>
+<a href="{% url 'patient-add' %}" class="btn btn-success mb-2">Add Patient</a>
+<ul class="list-group">
+    {% for patient in object_list %}
+        <li class="list-group-item"> (Name) {{ patient.name }} ---- (Age) {{ patient.age }} ---- (Disease) {{patient.disease}}</li>
+        <div>
+            <a href="{% url 'patient-delete' patient.pk %}" class="btn btn-sm btn-outline-primary">Delete</a>
+            <a href="{% url 'patient-update' patient.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+        </div>
+    {% endfor %}
+</ul>
+<a href="{% url 'home' %}" class="btn btn-sm btn-outline-primary">Back</a>
+
+{% endblock %}

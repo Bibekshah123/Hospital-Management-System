@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Doctors Details</h2>
+<ul class="list-group">
+    {% for doctor in object_list %}
+        <li class="list-group-item">(Name) {{ doctor.name }} ------ (Specialization) {{ doctor.specialization }}</li>
+
+    {% endfor %}
+</ul>
+<a href="{% url 'home' %}" class="btn btn-sm btn-outline-primary">Back</a>
+
+{% endblock %}
