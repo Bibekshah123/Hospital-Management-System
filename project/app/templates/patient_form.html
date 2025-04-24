@@ -1,17 +1,9 @@
 {% extends 'base.html' %}
 {% block content %}
-<div class="container my-4">
-    <h2 class="mb-4">Add Patient</h2>
-
-    <form method="post">
-        {% csrf_token %}
-        <div class="mb-3">
-            {{ form.as_p }}
-        </div>
-        <div class="mt-3">
-            <button type="submit" class="btn btn-primary">Save</button>
-            <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'patient-detail' patient.pk %}'">Cancel</button>
-        </div>
-    </form>
-</div>
+<h2>Add Patient</h2>
+<form method="post">{% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'patient-detail' patient.pk %}'">Cancel</button>
+</form>
 {% endblock %}
