@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Patient Details</h2>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Name:</strong> {{ object.name }}</h5>
+    <p class="card-text"><strong>Specialization:</strong> {{ object.age }}</p>
+    <p class="card-text"><strong>Disease:</strong> {{ object.disease }}</p>
+  </div>
+</div>
+<a href="{% url 'patient-update' patient.pk %}">Edit</a>
+<a href="{% url 'patient-delete' patient.pk %}">Delete</a>
+
+<a href="{% url 'patient-list' %}">Back to Patients</a>
+{% endblock %}

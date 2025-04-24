@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Appointments Details</h2>
+
+<div class="card">
+  <div class="card-body">
+    <h5 class="card-title"><strong>Doctor:</strong> {{ object.doctor }}</h5>
+    <p class="card-text"><strong>Patient:</strong> {{ object.patient }}</p>
+    <p class="card-text"><strong>Date:</strong> {{ object.date }}</p>
+  </div>
+</div>
+<a href="{% url 'appointment-update' appointment.pk %}">Edit</a>
+<a href="{% url 'appointment-delete' appointment.pk %}">Delete</a>
+
+<a href="{% url 'doctor-list' %}">Back to Appointments</a>
+{% endblock %}

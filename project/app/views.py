@@ -7,6 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm  
 from django.views.generic.base import TemplateView
+from .mixins import OwnerMixin
 
 
 # Create your views here.
@@ -36,7 +37,7 @@ def logout_view(request):
     return redirect('home')
 
 
-class DoctorListView(LoginRequiredMixin, ListView):
+class DoctorListView(LoginRequiredMixin, OwnerMixin, ListView):
     model = Doctor
     template_name = 'doctor_list.html'
     
@@ -51,9 +52,10 @@ class DoctorDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'doctor_delete.html'
     success_url = reverse_lazy('doctor-list')
     
-# class DoctorDetailView(LoginRequiredMixin, DetailView):
-#     model = Doctor
-#     template_name = 'doctor_detail.html'
+class DoctorDetailView(LoginRequiredMixin,  DetailView):
+    model = Doctor
+    template_name = 'doctor_detail.html'
+    context_object_name = 'doctor'
     
 class DoctorUpdateView(LoginRequiredMixin, UpdateView):
     model = Doctor
@@ -83,6 +85,11 @@ class PatientUpdateView(LoginRequiredMixin, UpdateView):
     fields = ['name', 'age', 'disease']
     success_url = reverse_lazy('patient-list')
 
+class PatientDetailView(LoginRequiredMixin, DetailView):
+    model = Patient
+    template_name = 'patient_detail.html'
+    context_object_name = 'patient'
+
     
 
 class AppointmentListView(LoginRequiredMixin, ListView):
@@ -105,3 +112,8 @@ class AppointmentUpdateView(LoginRequiredMixin, UpdateView):
     template_name = 'appointment_form.html'
     fields = ['doctor', 'patient', 'date']
     success_url = reverse_lazy('appointment-list')
+    
+class AppointmentDetailView(LoginRequiredMixin, DetailView):
+    model = Appointment
+    template_name = 'appointment_detail.html'
+    context_object_name = 'appointment'
