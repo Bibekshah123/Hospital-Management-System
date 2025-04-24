@@ -1,9 +1,19 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Add Appointments</h2>
-<form method="post">{% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-primary">Save</button>
-    <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'appointment-list' %}'">Cancel</button>
-</form>
+<div class="container my-4">
+    <h2 class="mb-4">Add Appointment</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <div class="mb-3">
+            {{ form.as_p }}
+        </div>
+
+        <div class="d-flex gap-2">
+            <button type="submit" class="btn btn-primary">Save</button>
+            <button type="button" class="btn btn-secondary" onclick="window.location.href='{% url 'appointment-list' %}'">Cancel</button>
+        </div>
+    </form>
+</div>
 {% endblock %}

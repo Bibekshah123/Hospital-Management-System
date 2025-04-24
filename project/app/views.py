@@ -7,7 +7,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm  
 from django.views.generic.base import TemplateView
-from .mixins import OwnerMixin
+from .mixins import OwnerRequiredMixin
 
 
 # Create your views here.
@@ -37,7 +37,7 @@ def logout_view(request):
     return redirect('home')
 
 
-class DoctorListView(LoginRequiredMixin, OwnerMixin, ListView):
+class DoctorListView(LoginRequiredMixin,  ListView):
     model = Doctor
     template_name = 'doctor_list.html'
     
@@ -52,7 +52,7 @@ class DoctorDeleteView(LoginRequiredMixin, DeleteView):
     template_name = 'doctor_delete.html'
     success_url = reverse_lazy('doctor-list')
     
-class DoctorDetailView(LoginRequiredMixin,  DetailView):
+class DoctorDetailView(LoginRequiredMixin, DetailView):
     model = Doctor
     template_name = 'doctor_detail.html'
     context_object_name = 'doctor'
@@ -92,7 +92,7 @@ class PatientDetailView(LoginRequiredMixin, DetailView):
 
     
 
-class AppointmentListView(LoginRequiredMixin, ListView):
+class AppointmentListView(LoginRequiredMixin,  ListView):
     model = Appointment
     template_name = 'appointment_list.html'
     

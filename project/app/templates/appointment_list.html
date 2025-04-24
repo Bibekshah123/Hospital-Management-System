@@ -1,12 +1,22 @@
 {% extends 'base.html' %}
 {% block content %}
-<h2>Appointments</h2>
-<a href="{% url 'appointment-add' %}" class="btn btn-primary">Add Appointment</a>
 
-{% for appointment in appointment_list %}
-  <li>
-    <a href="{% url 'appointment-detail' appointment.pk %}">View Appointment</a>
-  </li>
-{% endfor %}
-<a href="{% url 'home' %}" class="btn btn-sm btn-outline-primary">Back</a>
+<div class="container my-4">
+    <h2 class="mb-4">Appointment</h2>
+    <a href="{% url 'appointment-add' %}" class="btn btn-primary mb-3">Add Appointment</a>
+    {% if appointment_list %}
+    <ul class="list-group mb-3">
+        {% for appointment in appointment_list %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'appointment-detail' appointment.pk %}" class="btn btn-outline-secondary btn-sm">View Appointment</a>
+            </li>
+        {% endfor %}
+    </ul>
+    {% else %}
+        <p class="text-muted">No appointments found.</p>
+    {% endif %}
+
+    <a href="{% url 'home' %}" class="btn btn-sm btn-outline-primary">Back</a>
+</div>
+
 {% endblock %}

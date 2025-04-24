@@ -1,12 +1,20 @@
 {% extends 'base.html' %}
-{% block content %}
-<h2>Doctor</h2>
-<a href="{% url 'doctor-add' %}" class="btn btn-primary">Add Doctor</a>
 
-{% for doctor in doctor_list %}
-  <li>
-    <a href="{% url 'doctor-detail' doctor.pk %}">View Doctor</a>
-  </li>
-{% endfor %}
-<a href="{% url 'home' %}" class="btn btn-sm btn-outline-primary">Back</a>
+{% block content %}
+
+<div class="container my-4">
+    <h2 class="mb-4">Doctor</h2>
+    <a href="{% url 'doctor-add' %}" class="btn btn-primary mb-3">Add Doctor</a>
+
+    <ul class="list-group mb-3">
+        {% for doctor in doctor_list %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <a href="{% url 'doctor-detail' doctor.pk %}" class="btn btn-outline-secondary btn-sm">View Doctor</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'home' %}" class="btn btn-outline-primary btn-sm">Back</a>
+</div>
+
 {% endblock %}
